@@ -1,6 +1,6 @@
 # City_Defence
 
-This shooting game is build using Python with Pygame. There are 14 parts:
+This shooting game is build using Python with Pygame. There are 14 parts (next part includes all parts before):
 - city_defence_0_background.py
 - city_defence_1_player_and_controls.py
 - city_defence_2_enemy.py
