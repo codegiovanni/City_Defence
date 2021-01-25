@@ -18,6 +18,6 @@ This shooting game is build using Python with Pygame. There are 14 parts (next p
 
 Full game you can find in city_defence_00_full.py.
 
-Most of used images are free to use, except urban_long.png and urban_long_grey.png, they modified for this game, but original named "Top view of the city seamless pattern of streets, roads, houses, and cars" belongs and all rights have its creator Alexander Zelnitskiy.
+Most of used images are free to use, except urban_long.png and urban_long_grey.png, they modified for this game, but originaly named "Top view of the city seamless pattern of streets, roads, houses, and cars" belongs and all rights have its creator Alexander Zelnitskiy.
 All of the sounds is free to use.
 Music – Frozen Jam by tgfcoder <https://twitter.com/tgfcoder> licensed under CC-BY-3.
