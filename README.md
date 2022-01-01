@@ -1,23 +1,10 @@
 # City_Defence
 
-This shooting game is build using Python with Pygame. There are 14 parts (next part includes all parts before):
-- city_defence_0_background.py
-- city_defence_1_player_and_controls.py
-- city_defence_2_enemy.py
-- city_defence_3_shooting.py
-- city_defence_4_collisions.py
-- city_defence_5_lives.py
-- city_defence_6_score.py
-- city_defence_7_go_screen.py
-- city_defence_8_explosions.py
-- city_defence_9_moving_background.py
-- city_defence_10_shield_bar.py
-- city_defence_11_highscore.py
-- city_defence_12_powerups.py
-- city_defence_13_sounds.py
+This shooting game is build using Python with Pygame.
 
-Full game you can find in city_defence_00_full.py.
+You can install the dependencies by using `pip -r install requirements.txt`
+To play the game, change into the directory by using `cd City_Defence` and then `python city_defence_00_full.py`
 
-Most of used images are free to use, except urban_long.png and urban_long_grey.png, they modified for this game, but originaly named "Top view of the city seamless pattern of streets, roads, houses, and cars" belongs and all rights have its creator Alexander Zelnitskiy.
+Most of used images are free to use, except urban_long.png and urban_long_grey.png, they have been modified for this game, but originaly named "Top view of the city seamless pattern of streets, roads, houses, and cars" belongs and all rights have its creator Alexander Zelnitskiy.
 All of the sounds is free to use.
 Music – Frozen Jam by tgfcoder <https://twitter.com/tgfcoder> licensed under CC-BY-3.
