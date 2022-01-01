@@ -37,15 +37,23 @@ class Player(pg.sprite.Sprite):
         self.radius = int(self.rect.width * .8 / 2)
 
     def update(self):
-        if self.power >= 2 and pg.time.get_ticks() - self.powerup_time > POWERUP_TIME:
+        """
+        Updates the player's position depending on the key(s) pressed.
+        It also checks and decreases the player's power after the powerup time is up.
+        """
+
+        #decrease the power if the time is up
+        if self.power > 1 and pg.time.get_ticks() - self.powerup_time > POWERUP_TIME:
             self.power -= 1
             self.powerup_time = pg.time.get_ticks()
 
+        #unhide if the time is up
         if self.hidden and pg.time.get_ticks() - self.hide_timer > 1000:
             self.hidden = False
             self.rect.centerx = WIDTH / 2
             self.rect.bottom = HEIGHT - 10
 
+        #reset dx and change according to which keys are pressed
         self.speedx = 0
         keystate = pg.key.get_pressed()
         if keystate[pg.K_LEFT]:
@@ -54,7 +62,9 @@ class Player(pg.sprite.Sprite):
             self.speedx = 7
         if keystate[pg.K_SPACE]:
             self.shoot()
+        #update x by dx
         self.rect.x += self.speedx
+        #check for collision with the screen borders
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
         self.rect.left = max(self.rect.left, 0)
@@ -69,19 +79,12 @@ class Player(pg.sprite.Sprite):
         now = pg.time.get_ticks()
         if now - self.last_shot > self.shoot_delay:
             self.last_shot = now
-            if self.power == 1:
-                laser = Laser(self.rect.centerx, self.rect.top)
-                all_sprites.add(laser)
-                lasers.add(laser)
-                shoot_sound.play()
-            if self.power >= 2:
-                laser1 = Laser(self.rect.left, self.rect.centery)
-                laser2 = Laser(self.rect.right, self.rect.centery)
-                all_sprites.add(laser1)
-                all_sprites.add(laser2)
-                lasers.add(laser1)
-                lasers.add(laser2)
-                shoot_sound.play()
+            shoot_sound.play()
+            #create a laser for every laser
+            for i in range(self.power):
+                l = Laser(divide_equal(self.rect.left, self.rect.right, self.power-1)[i], self.rect.centery)
+                all_sprites.add(l)
+                lasers.add(l)
 
     def hide(self):
         self.hidden = True
@@ -120,6 +123,21 @@ def add_enemy():
     all_sprites.add(x)
     enemies.add(x)
 
+def divide_equal(start:int, end:int, num:int) -> list:
+    """
+    Given a start and an end, returns a list of all the coordinates that divide that segment in equal parts.
+    If num == 0, returns the average between start and end
+    """
+    if num == 0:
+        return [(start+end)/2]
+    if start > end or num < 1:
+        raise SyntaxError
+    if start == end or num == 1:
+        return [start, end]
+    res = [start]
+    for _ in range(num):
+        res.append(int(res[-1] + (end-start)/num))
+    return res
 
 def load_data():
     dir = path.dirname(__file__)
@@ -154,7 +172,7 @@ def show_go_screen(svalue:int, hvalue:int):
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
-            if event.type == pg.KEYUP:
+            if event.type == pg.KEYDOWN:
                 waiting = False
 
 for i in range(7):
